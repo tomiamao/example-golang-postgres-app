@@ -28,10 +28,13 @@ func createConnection() *sql.DB {
 	"password=%s dbname=%s sslmode=disable",
 	os.Getenv("POSTGRES_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
 
+	log.Println("Connect to Postgres")
+	log.Println(psqlInfo)
 	// Open the connection
 	db, err := sql.Open("postgres", psqlInfo)
 
 	if err != nil {
+		log.Println(err)
 		panic(err)
 	}
 
@@ -39,6 +42,7 @@ func createConnection() *sql.DB {
 	err = db.Ping()
 
 	if err != nil {
+		log.Println(err)
 		panic(err)
 	}
 
