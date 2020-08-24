@@ -23,13 +23,13 @@ type response struct {
 
 // create connection with postgres db
 func createConnection() *sql.DB {
-  // Connection info
-  psqlInfo := fmt.Sprintf("host=%s port=%S user=%s "+
-    "password=%s dbname=%s sslmode=disable",
-    os.Getenv("POSTGRES_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
-    
+	// Connection info
+	psqlInfo := fmt.Sprintf("host=%s port=%S user=%s "+
+	"password=%s dbname=%s sslmode=disable",
+	os.Getenv("POSTGRES_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
+
 	// Open the connection
-	db, err := sql.Open("postgres", os.Getenv("POSTGRES_URL"))
+	db, err := sql.Open("postgres", psqlInfo)
 
 	if err != nil {
 		panic(err)
