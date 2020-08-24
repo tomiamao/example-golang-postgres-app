@@ -9,7 +9,8 @@ import (
 )
 
 func main() {
+	log.Println(fmt.Sprintf("Starting server on the port %s...\n", os.Getenv("PORT")))
 	r := router.Router()
-	fmt.Sprintf("Starting server on the port %s...\n", os.Getenv("PORT"))
+	log.Println(fmt.Sprintf("Starting server on the port %s...\n", os.Getenv("PORT")))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), r))
 }
