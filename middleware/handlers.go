@@ -26,7 +26,7 @@ func createConnection() *sql.DB {
 	// Connection info
 	psqlInfo := fmt.Sprintf("host=%s port=%S user=%s "+
 	"password=%s dbname=%s sslmode=disable",
-	os.Getenv("POSTGRES_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
+	os.Getenv("POSTGRESDB_DUMPX6_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
 
 	log.Println("Connect to Postgres")
 	log.Println(psqlInfo)
