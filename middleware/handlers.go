@@ -25,7 +25,7 @@ type response struct {
 func createConnection() *sql.DB {
 	// Connection info
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+
-	"password=%s dbname=%s sslmode=disable",
+	"password=%s dbname=%s sslmode=require",
 	os.Getenv("POSTGRESDB_DUMPX6_URL"), os.Getenv("POSTGRESDB_DUMPX6_PORT"), os.Getenv("POSTGRESDB_DUMPX6_USER"), os.Getenv("POSTGRESDB_DUMPX6_PASSWORD"), "test")
 
 	log.Println("Connect to Postgres")
