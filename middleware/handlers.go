@@ -46,7 +46,7 @@ func createConnection() *sql.DB {
 		panic(err)
 	}
 	
-	f _, err := db.Exec("CREATE TABLE IF NOT EXISTS data.users (id INT PRIMARY KEY, name TEXT, location TEXT, age INT)"); err != nil {
+	_, err := db.Exec("CREATE TABLE IF NOT EXISTS data.users (id INT PRIMARY KEY, name TEXT, location TEXT, age INT)"); err != nil {
         	log.Fatal(err)
 	}
 
