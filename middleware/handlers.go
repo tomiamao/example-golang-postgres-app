@@ -235,7 +235,7 @@ func getUser(id int64) (models.User, error) {
 	row := db.QueryRow(sqlStatement, id)
 
 	// unmarshal the row object to user
-	err := row.Scan(&user.ID, &user.Name, &user.Age, &user.Location)
+	err := row.Scan(&user.ID, &user.Name, &user.Location, &user.Age)
 
 	switch err {
 	case sql.ErrNoRows:
