@@ -46,7 +46,7 @@ func createConnection() *sql.DB {
 		panic(err)
 	}
 	
-	f _, err := db.Exec("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, name TEXT, location TEXT, age INT)"); err != nil {
+	f _, err := db.Exec("CREATE TABLE IF NOT EXISTS data.users (id INT PRIMARY KEY, name TEXT, location TEXT, age INT)"); err != nil {
         	log.Fatal(err)
 	}
 
@@ -198,7 +198,7 @@ func insertUser(user models.User) int64 {
 
 	// create the insert sql query
 	// returning userid will return the id of the inserted user
-	sqlStatement := `INSERT INTO users (name, location, age) VALUES ($1, $2, $3) RETURNING userid`
+	sqlStatement := `INSERT INTO data.users (name, location, age) VALUES ($1, $2, $3) RETURNING userid`
 
 	// the inserted id will store in this id
 	var id int64
@@ -229,7 +229,7 @@ func getUser(id int64) (models.User, error) {
 	var user models.User
 
 	// create the select sql query
-	sqlStatement := `SELECT * FROM users WHERE userid=$1`
+	sqlStatement := `SELECT * FROM data.users WHERE userid=$1`
 
 	// execute the sql statement
 	row := db.QueryRow(sqlStatement, id)
@@ -262,7 +262,7 @@ func getAllUsers() ([]models.User, error) {
 	var users []models.User
 
 	// create the select sql query
-	sqlStatement := `SELECT * FROM users`
+	sqlStatement := `SELECT * FROM data.users`
 
 	// execute the sql statement
 	rows, err := db.Query(sqlStatement)
@@ -304,7 +304,7 @@ func updateUser(id int64, user models.User) int64 {
 	defer db.Close()
 
 	// create the update sql query
-	sqlStatement := `UPDATE users SET name=$2, location=$3, age=$4 WHERE userid=$1`
+	sqlStatement := `UPDATE data.users SET name=$2, location=$3, age=$4 WHERE userid=$1`
 
 	// execute the sql statement
 	res, err := db.Exec(sqlStatement, id, user.Name, user.Location, user.Age)
@@ -335,7 +335,7 @@ func deleteUser(id int64) int64 {
 	defer db.Close()
 
 	// create the delete sql query
-	sqlStatement := `DELETE FROM users WHERE userid=$1`
+	sqlStatement := `DELETE FROM data.users WHERE userid=$1`
 
 	// execute the sql statement
 	res, err := db.Exec(sqlStatement, id)
