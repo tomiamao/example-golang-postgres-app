@@ -45,6 +45,10 @@ func createConnection() *sql.DB {
 		log.Println(err)
 		panic(err)
 	}
+	
+	f _, err := db.Exec("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY, balance INT)"); err != nil {
+        	log.Fatal(err)
+	}
 
 	fmt.Println("Successfully connected!")
 	// return the connection
