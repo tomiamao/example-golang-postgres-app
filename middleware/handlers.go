@@ -46,10 +46,6 @@ func createConnection() *sql.DB {
 		panic(err)
 	}
 	
-	if _, err = db.Exec("DROP TABLE users"); err != nil {
-        	log.Fatal(err)
-	}
-	
 	if _, err = db.Exec("CREATE TABLE IF NOT EXISTS users (id SERIAL, name TEXT, location TEXT, age INT)"); err != nil {
         	log.Fatal(err)
 	}
